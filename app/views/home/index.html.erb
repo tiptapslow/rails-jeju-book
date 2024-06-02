@@ -1,0 +1,6 @@
+<h1>Welcome to JeJu Book</h1>
+<p>This is your home page.</p>
+<%= link_to 'Books', books_path, data: { turbo_frame: 'content' } %>
+<turbo-frame id="content">
+  <!-- Content will be loaded here -->
+</turbo-frame>
