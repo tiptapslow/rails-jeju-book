@@ -1,0 +1,28 @@
+@import "bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+.book-card {
+    .card-img {
+        max-width: 100px;
+        max-height: 150px;
+        object-fit: cover;
+        margin: 10px;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .text-end {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

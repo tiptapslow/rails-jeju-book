@@ -73,3 +73,24 @@ gem 'hotwire-rails'
 group :development, :test do
   gem 'rspec-rails', '~> 6.1.0'
 end
+
+# user authentication
+gem 'devise', '~> 4.9', '>= 4.9.4'
+
+# user authorization
+gem 'cancancan'
+# image upload
+gem 'carrierwave'
+# image processing
+gem 'mini_magick'
+# Bootstrap 5
+gem 'bootstrap', '~> 5.3', '>= 5.3.3'
+# Font Awesome 5
+gem 'sassc-rails'
+# Bootstrap Icons
+gem 'bootstrap-icons', '~> 1.0', '>= 1.0.14'
+
+# Foreman
+gem 'foreman', '~> 0.88.1'
+
+gem 'kaminari', '~> 1.2', '>= 1.2.2'

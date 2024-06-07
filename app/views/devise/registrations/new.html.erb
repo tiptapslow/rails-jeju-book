@@ -1,0 +1,74 @@
+<!-- app/views/devise/registrations/new.html.erb -->
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <% if flash[:notice] %>
+    <div class="alert alert-info" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="mb-3">
+    <%= f.label :email, class: 'form-label' %>
+    <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email", required: true %>
+    <div class="invalid-feedback">
+      Please provide a valid email address.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :password, class: 'form-label' %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %>
+    <%= f.password_field :password, class: 'form-control', autocomplete: "new-password", required: true %>
+    <div class="invalid-feedback">
+      Please provide a password.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :password_confirmation, class: 'form-label' %>
+    <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password", required: true %>
+    <div class="invalid-feedback">
+      Please confirm your password.
+    </div>
+  </div>
+
+  <div class="d-grid">
+    <%= f.submit "Sign up", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>

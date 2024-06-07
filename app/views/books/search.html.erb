@@ -1,0 +1,39 @@
+<!-- app/views/books/search.html.erb -->
+<div class="container mt-5">
+  <h1 class="text-center">Search Books</h1>
+  <div class="d-flex justify-content-center">
+    <form class="d-flex flex-column align-items-center mb-3" method="get" action="<%= books_search_path %>" style="max-width: 600px;">
+      <div class="input-group mb-3 w-100">
+        <input class="form-control" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="query">
+        <button class="btn btn-outline-success" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <% if @books.present? %>
+    <div class="row">
+      <% @books.each do |book| %>
+        <div class="col-md-4 mb-3">
+          <div class="card h-100">
+            <img src="<%= book.image %>" class="card-img-top" alt="책 이미지">
+            <div class="card-body">
+              <h5 class="card-title"><%= book.name %></h5>
+              <p class="card-text">저자: <%= book.author %></p>
+              <p class="card-text">카테고리: <%= book.category %></p>
+              <p class="card-text">등록일: <%= book.published_date %></p>
+            </div>
+            <div class="card-footer">
+              <%= link_to '대출', new_loan_path(book_id: book.id), class: "btn btn-primary w-100" %>
+            </div>
+          </div>
+        </div>
+      <% end %>1
+    </div>
+    <div class="d-flex justify-content-center">
+      <%= paginate @paginator %>
+    </div>
+  <% else %>
+    <p class="text-center">검색 결과가 없습니다.</p>
+  <% end %>
+</div>

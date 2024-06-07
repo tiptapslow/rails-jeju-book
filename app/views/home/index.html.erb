@@ -1,6 +1,57 @@
-<h1>Welcome to JeJu Book</h1>
-<p>This is your home page.</p>
-<%= link_to 'Books', books_path, data: { turbo_frame: 'content' } %>
-<turbo-frame id="content">
-  <!-- Content will be loaded here -->
-</turbo-frame>
+<!-- app/views/home/index.html.erb -->
+<div class="container mt-5">
+  <h1 class="text-center">Welcome to JeJu Book</h1>
+  <p class="text-center">This is Sunki & Mirae Jeju book home page.</p>
+  <div class="d-flex justify-content-center">
+    <form class="d-flex flex-column align-items-center mb-3" style="max-width: 600px;" method="get" action="<%= root_path %>">
+      <input class="form-control mb-2" type="search" placeholder="검색어를 입력해주세요" aria-label="Search" name="query">
+      <button class="btn btn-outline-success" type="submit">
+        <i class="bi bi-search"></i>
+      </button>
+    </form>
+  </div>
+  <turbo-frame id="content">
+    <% if @books.present? %>
+      <div class="row">
+        <% @books.each do |book| %>
+          <div class="col-12 mb-3">
+            <div class="card h-100 book-card">
+              <div class="row no-gutters align-items-center">
+                <div class="col-md-2">
+                  <img src="<%= book.image_url %>" class="card-img" alt="Book Image">
+                </div>
+                <div class="col-md-4">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= book.title %></h5>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card-body">
+                    <p class="card-text">Author: <%= book.author %></p>
+                    <p class="card-text">Published Date: <%= book.published_date %></p>
+                    <p class="card-text">Category: <%= book.category %></p>
+                  </div>
+                </div>
+                <div class="col-md-2 text-end">
+                  <% loan = Loan.find_by(book_id: book.id, returned_at: nil) %>
+                  <p class="card-text">
+                    <%= if loan.present?
+                          link_to 'Borrowed', '#', class: 'btn btn-secondary', disabled: true
+                        else
+                          link_to 'Borrow', new_loan_path(book_id: book.id), class: 'btn btn-primary'
+                        end %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="d-flex justify-content-center">
+        <%= paginate @books %>
+      </div>
+    <% else %>
+      <p class="text-center">검색 결과가 없습니다.</p>
+    <% end %>
+  </turbo-frame>
+</div>

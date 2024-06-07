@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>JejuBook</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>JeJu Book</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'bootstrap' %>
+  <%= javascript_include_tag 'popper' %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <%= render 'layouts/header' %>
+  <div class="container mt-5">
     <%= yield %>
-  </body>
+  </div>
+</body>
 </html>
