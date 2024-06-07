@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
   def index
-    if params[:query].present?
-      @books = Book.where('title LIKE ? OR author LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").page(params[:page]).per(5)
+    @query = params[:query]
+    if @query.present?
+      @books = Book.where('title LIKE ?', "%#{@query}%").page(params[:page]).per(5)
     else
       @books = Book.page(params[:page]).per(5)
     end
