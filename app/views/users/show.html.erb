@@ -1,1 +1,54 @@
-<h1>User Show Page</h1>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="mb-4 display-4">My Page</h1>
+      <div class="card mb-4" style="font-size: 1.25rem;">
+        <div class="card-body">
+          <h5 class="card-title display-5">User Information</h5>
+          <p class="card-text"><strong>Email:</strong> <%= @user.email %></p>
+          <p class="card-text"><strong>Nickname:</strong> <%= @user.nickname %></p>
+          <p class="card-text"><strong>User Type:</strong> <%= @user.user_type %></p>
+          <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-primary btn-lg mt-3' %>
+        </div>
+      </div>
+
+      <div class="card" style="font-size: 1.25rem;">
+        <div class="card-body">
+          <h5 class="card-title display-5">My Loan Records</h5>
+          <% if @loans.any? %>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Book Title</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Loaned At</th>
+                  <th scope="col">Due Date</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @loans.each do |loan| %>
+                  <tr>
+                    <td><%= loan.book.title %></td>
+                    <td><%= loan.book.author %></td>
+                    <td><%= loan.loaned_at.strftime('%Y-%m-%d') %></td>
+                    <td><%= loan.due_date.strftime('%Y-%m-%d') %></td>
+                    <td>
+                      <% if loan.returned_at.present? %>
+                        <span class="btn btn-secondary btn-sm" disabled>Returned</span>
+                      <% else %>
+                        <%= link_to 'Return', return_book_loan_path(loan), data: { turbo_method: :patch }, class: 'btn btn-danger btn-sm' %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <p class="card-text">You have no loan records.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

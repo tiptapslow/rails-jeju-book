@@ -4,10 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :loans
+
   validates :nickname, presence: true, uniqueness: true
   validates :user_type, presence: true
 
   def admin?
-    self.user_type == '관리자'
+    puts self.user_type
+    self.user_type == 'admin'
   end
 end

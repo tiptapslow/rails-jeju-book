@@ -1,0 +1,22 @@
+<%# /Users/sk/projects/kimsk/rails/jeju_book/app/views/loans/new.html.erb %>
+<div id="loan-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Borrow Book</h5>
+            </div>
+            <div class="modal-body">
+                <p>책 제목: <%= @book.title %></p>
+                <p>저자: <%= @book.author %></p>
+                <p>출판년도: <%= @book.published_date %></p>
+                <p>반납 예정일: <%= (Date.today + Loan::DEFAULT_LOAN_PERIOD).strftime('%Y-%m-%d') %></p>
+            </div>
+            <div class="modal-footer">
+                <%= form_with(model: @loan, url: loans_path, local: true) do |f| %>
+                    <%= f.hidden_field :book_id, value: @book.id %>
+                    <%= f.submit '대출 확인', class: 'btn btn-primary' %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

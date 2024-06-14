@@ -17,5 +17,39 @@
   <div class="container mt-5">
     <%= yield %>
   </div>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">로그인 필요</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          대출하시려면 회원 로그인이 필요합니다.
+        </div>
+        <div class="modal-footer">
+          <%= link_to '로그인', new_user_session_path, class: 'btn btn-primary' %>
+          <%= link_to '회원가입', new_user_registration_path, class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loan Modal -->
+  <div class="modal fade" id="loanModal" tabindex="-1" aria-labelledby="loanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loanModalLabel">책 대출</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="loanModalBody">
+          <!-- 대출 정보가 여기에 동적으로 로드됩니다. -->
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

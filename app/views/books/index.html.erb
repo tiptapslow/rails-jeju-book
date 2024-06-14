@@ -1,8 +1,8 @@
-<turbo-frame id="content">
+<div>
   <h1>Books</h1>
   <ul>
     <% @books.each do |book| %>
       <li><%= link_to book.title, book_path(book), data: { turbo_frame: 'content' } %></li>
     <% end %>
   </ul>
-</turbo-frame>
+</div>

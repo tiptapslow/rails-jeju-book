@@ -1,6 +1,44 @@
+// app/assets/stylesheets/application.scss
+
+// Import Bootstrap and other styles
 @import "bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
+// Define colors
+$orange-color: #FFA500;
+
+// Custom styles for the search form
+.input-group .form-select,
+.input-group .form-control,
+.input-group .btn-outline-success {
+    border: 2px solid $orange-color;
+    height: calc(2.5rem + 2px);
+}
+
+.input-group .btn-outline-success {
+    color: $orange-color;
+    border-color: $orange-color;
+
+    &:hover {
+        background-color: $orange-color;
+        color: white;
+    }
+}
+
+// Adjusted widths for form elements to give more space to the input field
+.input-group .form-select {
+    max-width: 100px; // 드롭다운 메뉴의 너비를 줄였습니다.
+}
+
+.input-group .form-control {
+    flex-grow: 2; // 입력 필드가 남은 공간을 차지하도록 설정했습니다.
+}
+
+.input-group .btn-outline-success {
+    max-width: 80px; // 검색 버튼의 너비를 줄였습니다.
+}
+
+// Existing book card styles
 .book-card {
     .card-img {
         max-width: 100px;
